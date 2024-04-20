@@ -6,10 +6,15 @@ public class PlayerController : MonoBehaviour
 {
     // Variables for movement speed
     public float walkSpeed = 5f;
-    public float runSpeed = 10f;
+    public float runSpeed = 7f;
 
     // Animator component reference
     private Animator animator;
+
+    public GameObject bullet;
+
+    bool haskey = false;
+    public string nextLevel;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +53,26 @@ public class PlayerController : MonoBehaviour
         {
             // Walk
             transform.Translate(movement * walkSpeed * Time.deltaTime, Space.World);
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Fire();
+        }
+    }
+
+    void Fire()
+    {
+        var pos = transform.position + (transform.forward * 2);
+        var rot = transform.rotation;
+        Instantiate(bullet, pos, rot);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Gun"))
+        {
+            haskey = true;
+            Destroy(other.gameObject);
         }
     }
 }
