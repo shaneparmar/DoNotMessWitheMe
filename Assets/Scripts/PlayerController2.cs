@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController2 : MonoBehaviour
 {
+    public float timeLeft = 30;
+    
     bool haskey = false;
     public string nextLevel;
 
@@ -11,6 +13,9 @@ public class PlayerController2 : MonoBehaviour
 
 
     Rigidbody rb;
+
+    //public GameObject bulletPrefab;
+    //public Transform firePoint;
 
 
 
@@ -30,13 +35,12 @@ public class PlayerController2 : MonoBehaviour
         }
         if (other.CompareTag("Terrorist"))
         {
-            haskey = true;
             Destroy(other.gameObject);
         }
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (haskey == true && Input.GetKeyDown(KeyCode.F))
         {
             Fire();
         }

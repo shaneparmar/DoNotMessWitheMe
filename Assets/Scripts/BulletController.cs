@@ -8,6 +8,6 @@ public class BulletController : MonoBehaviour
     void Start()
     {
         GetComponent<Rigidbody>().AddForce(transform.forward * 50, ForceMode.Impulse);
-        Destroy(this.gameObject, 5);
+        //Destroy(this.gameObject, 5);
     }
 }
